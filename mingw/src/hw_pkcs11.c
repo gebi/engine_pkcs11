@@ -59,6 +59,7 @@
  *
  */
 
+#include <config.h>
 #include <stdio.h>
 #include <string.h>
 #include <openssl/crypto.h>
@@ -131,7 +132,9 @@ static int pkcs11_engine_ctrl(ENGINE * e, int cmd, long i, void *p,
 	case CMD_MODULE_PATH:
 		return set_module((const char *)p);
 	case CMD_PIN:
-		return set_pin((const char *)p);
+/*		return set_pin((const char *)p); */
+/* MISSING!!! */
+		break;
 	case CMD_VERBOSE:
 		return inc_verbose();
 	case CMD_LOAD_CERT_CTRL:

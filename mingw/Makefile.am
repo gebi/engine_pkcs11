@@ -1,17 +1,13 @@
-# Process this file with automake to create Makefile.in
 
-SUBDIRS = . aclocal src 
-DIST_SUBDIRS = . aclocal doc src 
-
-EXTRA_DIST = NEWS bootstrap depcomp 
-
+AUTOMAKE_OPTIONS = foreign
 MAINTAINERCLEANFILES = \
-	Makefile.in config.h.in configure \
+	Makefile.in config.h.in config.h.in~ configure \
 	install-sh ltmain.sh missing mkinstalldirs \
 	compile depcomp config.log config.status \
-	config.guess config.sub acinclude.m4 aclocal.m4
+	config.guess config.sub acinclude.m4 aclocal.m4 \
+	config.log configure
 
-DEPCLEANFILES = config.log configure
+EXTRA_DIST = NEWS bootstrap
 
-AUTOMAKE_OPTIONS = foreign 1.5
-ACLOCAL_AMFLAGS = -I aclocal
+SUBDIRS = src doc
+
