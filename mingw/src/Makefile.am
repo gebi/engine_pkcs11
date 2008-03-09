@@ -1,4 +1,4 @@
-MAINTAINERCLEANFILES = Makefile Makefile.in
+MAINTAINERCLEANFILES = Makefile.in
 EXTRA_DIST = Makefile.mak engine_pkcs11.def 
 
 engines_LTLIBRARIES = engine_pkcs11.la
