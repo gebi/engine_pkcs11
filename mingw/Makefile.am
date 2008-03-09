@@ -11,3 +11,6 @@ EXTRA_DIST = NEWS bootstrap
 
 SUBDIRS = src doc
 
+# Allow detection of packaged tarball
+dist-hook:
+	echo > "$(distdir)/packaged"
