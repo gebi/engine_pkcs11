@@ -194,7 +194,6 @@ if test "x$old_openssl" = "xyes"; then
 	# openssl found, but version less than 0.9.7d
 	# linking libcrypto.a statically possible?
 
-	AC_MSG_CHECKING([should link static openssl])
 	saved_CFLAGS="${CFLAGS}"
 	saved_LIBS="${LIBS}"
 	CFLAGS="${CFLAGS} ${OPENSSL_CFLAGS}"
@@ -204,15 +203,18 @@ if test "x$old_openssl" = "xyes"; then
 		OPENSSL_DIR="${usrlibdir}"
 	fi
 	LIBS="${LIBS} ${OPENSSL_DIR}/libcrypto.a"
-	AC_TRY_LINK(
-		[
+	AC_CHECK_LIB(
+		[dl],
+		[dlopen]
+	)
+	AC_MSG_CHECKING([should link static openssl])
+	AC_LINK_IFELSE(
+		[AC_LANG_PROGRAM([[
 #include <string.h>
 #include <openssl/opensslv.h>
 #include <openssl/engine.h>
 #include <openssl/rand.h>
-		],
-		[
-int main(void)
+int test(void)
 {
 	char a[2048];
 	ENGINE *e;
@@ -224,7 +226,7 @@ int main(void)
 	RAND_add(a, sizeof(a), sizeof(a));
 	return(RAND_status() <= 0);
 }
-		],
+		]])],
 		[
 			AC_MSG_RESULT([yes])
 			ENGINE_LINK="${OPENSSL_DIR}/libcrypto.a"
