@@ -1,5 +1,5 @@
 
-AUTOMAKE_OPTIONS = foreign
+AUTOMAKE_OPTIONS = foreign 1.10
 MAINTAINERCLEANFILES = \
 	Makefile.in config.h.in config.h.in~ configure \
 	install-sh ltmain.sh missing mkinstalldirs \
