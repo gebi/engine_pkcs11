@@ -132,9 +132,7 @@ static int pkcs11_engine_ctrl(ENGINE * e, int cmd, long i, void *p,
 	case CMD_MODULE_PATH:
 		return set_module((const char *)p);
 	case CMD_PIN:
-/*		return set_pin((const char *)p); */
-/* MISSING!!! */
-		break;
+		return set_pin((const char *)p);
 	case CMD_VERBOSE:
 		return inc_verbose();
 	case CMD_LOAD_CERT_CTRL:
