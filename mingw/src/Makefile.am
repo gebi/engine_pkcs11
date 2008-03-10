@@ -17,7 +17,7 @@ endif
 engine_pkcs11_la_CFLAGS = $(AM_CFLAGS) $(OPENSSL_EXTRA_CFLAGS) $(OPENSSL_CFLAGS) \
 	$(LIBP11_CFLAGS)
 engine_pkcs11_la_LIBADD = $(ENGINE_LINK) $(OPENSSL_LIBS) $(LIBP11_LIBS)
-engine_pkcs11_la_LDFLAGS = $(AM_LDFLAGS) \
+engine_pkcs11_la_LDFLAGS = $(AM_LDFLAGS) $(OPENSSL_EXTRA_LDFLAGS) \
 	-module -avoid-version \
 	-export-symbols engine_pkcs11.exports \
 	-no-undefined

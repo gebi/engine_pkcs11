@@ -83,6 +83,13 @@ AC_ARG_ENABLE(
 
 usrlibdir="/usr/lib${libdir##*/lib}"
 
+AC_ARG_ENABLE(
+	[engines-dir],
+	[AC_HELP_STRING([--with-engines-dir], [OpenSSL engines directory. [[default=/usr/lib/engines]]])],
+	[enginesdir="${withval}"],
+	[enginesdir="${usrlibdir}/engines"]
+)
+
 dnl Checks for programs.
 AC_PROG_CPP
 AC_PROG_INSTALL
@@ -236,32 +243,39 @@ int test(void)
 	LIBS="${saved_LIBS}"
 fi
 
+#@alonbl: This was never actually used.
+#
 # now - last part to do: check if we gain anything from
 # funny parameters to link openssl with.
-
-#saved_LDFLAGS="$LDFLAGS"
-#if test "x$ENGINE_MSG" = "xyes" ; then
-#  for openssl_ldflag in "-Wl,-Bsymbolic" "-G -Wl,-Bsymbolic" "-shared -G -Wl,-Bsymbolic" "-Wl,-all_load"; do
-#	AC_MSG_CHECKING([whether we can use $openssl_ldflag])
-#	LDFLAGS="$saved_LDFLAGS $openssl_ldflag"
-#	AC_TRY_LINK(,[return 1],ac_cv_use_openssl_flag="yes",ac_cv_use_openssl_flag="no")
-#	AC_MSG_RESULT($ac_cv_use_openssl_flag)
-#	if test "$ac_cv_use_openssl_flag" = "yes"; then
-#		OPENSSL_LDFLAGS="$openssl_ldflag"
+#saved_LDFLAGS="${LDFLAGS}"
+#for test_flags in "-Wl,-Bsymbolic" "-G -Wl,-Bsymbolic" "-Wl,-all_load"; do
+#	AC_MSG_CHECKING([whether we can use ${test_flags}])
+#	LDFLAGS="${saved_LDFLAGS} ${test_flags}"
+#	AC_LINK_IFELSE(
+#		[AC_LANG_PROGRAM([[
+#int test()
+#{
+#	return 1;
+#}
+#		]])],
+#		[result="yes"],
+#		[result="no"]
+#	)
+#	AC_MSG_RESULT([${result}])
+#	if test "${result}" = "yes"; then
+#		OPENSSL_EXTRA_LDFLAGS="${test_flags}"
 #		break;
 #	fi
-#  done
-#fi
-#LDFLAGS="$saved_LDFLAGS"
-#AC_SUBST(OPENSSL_LDFLAGS)
+#done
+#LDFLAGS="${saved_LDFLAGS}"
 
-enginesdir="\$(libdir)/engines"
 
 AC_SUBST([enginesdir])
 AC_SUBST([ENGINE_LINK])
 AC_SUBST([ENGINE_PKCS11_VERSION_MAJOR])
 AC_SUBST([ENGINE_PKCS11_VERSION_MINOR])
 AC_SUBST([ENGINE_PKCS11_VERSION_FIX])
+AC_SUBST([OPENSSL_EXTRA_LDFLAGS])
 
 AM_CONDITIONAL([SVN_CHECKOUT], [test "${svn_checkout}" = "yes"])
 AM_CONDITIONAL([WIN32], [test "${WIN32}" = "yes"])
@@ -303,6 +317,7 @@ Libraries:               ${LIBS}
 
 OPENSSL_CFLAGS:          ${OPENSSL_CFLAGS}
 OPENSSL_LIBS:            ${OPENSSL_LIBS}
+OPENSSL_EXTRA_LDFLAGS:   ${OPENSSL_EXTRA_LDFLAGS}
 ENGINE_LINK:             ${ENGINE_LINK}
 
 EOF
