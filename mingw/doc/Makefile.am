@@ -1,4 +1,4 @@
-MAINTAINERCLEANFILES = Makefile.in ChangeLog
+MAINTAINERCLEANFILES = Makefile.in
 
 if ENABLE_DOC
 SUBDIRS = nonpersistent
