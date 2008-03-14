@@ -62,21 +62,21 @@ esac
 
 AC_ARG_ENABLE(
 	[strict],
-	[AC_HELP_STRING([--enable-strict], [enable strict compile mode [[default=disabled]]])],
+	[AC_HELP_STRING([--enable-strict], [enable strict compile mode @<:@disabled@:>@])],
 	,
 	[enable_strict="no"]
 )
 
 AC_ARG_ENABLE(
 	[pedantic],
-	[AC_HELP_STRING([--enable-pedantic], [enable pedantic compile mode [[desfault=disabled]]])],
+	[AC_HELP_STRING([--enable-pedantic], [enable pedantic compile mode @<:@disabled@:>@])],
 	,
 	[enable_pedantic="no"]
 )
 
 AC_ARG_ENABLE(
 	[doc],
-	[AC_HELP_STRING([--enable-doc], [enable installation of documents. [[default=disabled]]])],
+	[AC_HELP_STRING([--enable-doc], [enable installation of documents. @<:@disabled@:>@])],
 	,
 	[enable_doc="no"]
 )
@@ -85,7 +85,7 @@ usrlibdir="/usr/lib${libdir##*/lib}"
 
 AC_ARG_ENABLE(
 	[engines-dir],
-	[AC_HELP_STRING([--with-engines-dir], [OpenSSL engines directory. [[default=/usr/lib/engines]]])],
+	[AC_HELP_STRING([--with-engines-dir], [OpenSSL engines directory. @<:@/usr/lib/engines@:>@])],
 	[enginesdir="${withval}"],
 	[enginesdir="${usrlibdir}/engines"]
 )
