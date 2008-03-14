@@ -315,6 +315,8 @@ Compiler flags:          ${CFLAGS}
 Linker flags:            ${LDFLAGS}
 Libraries:               ${LIBS}
 
+LIBP11_CFLAGS:           ${LIBP11_CFLAGS}
+LIBP11_LIBS:             ${LIBP11_LIBS}
 OPENSSL_CFLAGS:          ${OPENSSL_CFLAGS}
 OPENSSL_LIBS:            ${OPENSSL_LIBS}
 OPENSSL_EXTRA_LDFLAGS:   ${OPENSSL_EXTRA_LDFLAGS}
