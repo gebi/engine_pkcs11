@@ -43,6 +43,7 @@ case "${host}" in
 	*-mingw32*|*-winnt*)
 		WIN32="yes"
 		CPPFLAGS="${CPPFLAGS} -DWIN32_LEAN_AND_MEAN"
+		WIN_LIBPREFIX="lib"
 	;;
 	*-cygwin*)
 		AC_MSG_CHECKING([cygwin mode to use])
@@ -55,6 +56,7 @@ case "${host}" in
 		else
 			AC_MSG_RESULT([Using cygwin])
 			CPPFLAGS="${CPPFLAGS} -DCRYPTOKI_FORCE_WIN32"
+			WIN_LIBPREFIX="cyg"
 			AC_DEFINE([USE_CYGWIN], [1], [Define if you are on Cygwin])
 		fi
 	;;
@@ -275,6 +277,7 @@ AC_SUBST([ENGINE_LINK])
 AC_SUBST([ENGINE_PKCS11_VERSION_MAJOR])
 AC_SUBST([ENGINE_PKCS11_VERSION_MINOR])
 AC_SUBST([ENGINE_PKCS11_VERSION_FIX])
+AC_SUBST([WIN_LIBPREFIX])
 AC_SUBST([OPENSSL_EXTRA_LDFLAGS])
 
 AM_CONDITIONAL([SVN_CHECKOUT], [test "${svn_checkout}" = "yes"])
