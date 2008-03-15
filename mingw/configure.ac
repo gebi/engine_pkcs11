@@ -85,9 +85,9 @@ AC_ARG_ENABLE(
 
 usrlibdir="/usr/lib${libdir##*/lib}"
 
-AC_ARG_ENABLE(
-	[engines-dir],
-	[AC_HELP_STRING([--with-engines-dir], [OpenSSL engines directory. @<:@/usr/lib/engines@:>@])],
+AC_ARG_WITH(
+	[enginesdir],
+	[AC_HELP_STRING([--with-enginesdir], [OpenSSL engines directory. @<:@/usr/lib/engines@:>@])],
 	[enginesdir="${withval}"],
 	[enginesdir="${usrlibdir}/engines"]
 )
@@ -317,6 +317,8 @@ Preprocessor flags:      ${CPPFLAGS}
 Compiler flags:          ${CFLAGS}
 Linker flags:            ${LDFLAGS}
 Libraries:               ${LIBS}
+
+enginesdir               ${enginesdir}
 
 LIBP11_CFLAGS:           ${LIBP11_CFLAGS}
 LIBP11_LIBS:             ${LIBP11_LIBS}
