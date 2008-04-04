@@ -1,4 +1,4 @@
-MAINTAINERCLEANFILES = Makefile.in
+MAINTAINERCLEANFILES = $(srcdir)/Makefile.in
 EXTRA_DIST = Makefile.mak engine_pkcs11.def 
 
 engines_LTLIBRARIES = engine_pkcs11.la
@@ -19,7 +19,7 @@ engine_pkcs11_la_CFLAGS = $(AM_CFLAGS) $(OPENSSL_EXTRA_CFLAGS) $(OPENSSL_CFLAGS)
 engine_pkcs11_la_LIBADD = $(ENGINE_LINK) $(OPENSSL_LIBS) $(LIBP11_LIBS)
 engine_pkcs11_la_LDFLAGS = $(AM_LDFLAGS) $(OPENSSL_EXTRA_LDFLAGS) \
 	-module -avoid-version \
-	-export-symbols engine_pkcs11.exports \
+	-export-symbols "$(srcdir)/engine_pkcs11.exports" \
 	-no-undefined
 
 install-data-hook:
@@ -32,8 +32,8 @@ RCCOMPILE = $(RC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
 LTRCCOMPILE = $(LIBTOOL) --mode=compile --tag=RC $(RCCOMPILE)
 
 .rc.lo:
-	$(LTRCCOMPILE) -i $< -o $@
+	$(LTRCCOMPILE) -i "$<" -o "$@"
 
 .rc.o:
-	$(RCCOMPILE) -i $< -o $@
+	$(RCCOMPILE) -i "$<" -o "$@"
 

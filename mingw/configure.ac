@@ -83,13 +83,11 @@ AC_ARG_ENABLE(
 	[enable_doc="no"]
 )
 
-usrlibdir="/usr/lib${libdir##*/lib}"
-
 AC_ARG_WITH(
 	[enginesdir],
 	[AC_HELP_STRING([--with-enginesdir], [OpenSSL engines directory. @<:@/usr/lib/engines@:>@])],
 	[enginesdir="${withval}"],
-	[enginesdir="${usrlibdir}/engines"]
+	[enginesdir="\$(libdir)/engines"]
 )
 
 dnl Checks for programs.
