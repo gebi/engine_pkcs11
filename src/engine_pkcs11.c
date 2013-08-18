@@ -101,6 +101,7 @@ int set_pin(const char *_pin)
 
 	/* Copy the PIN. If the string cannot be copied, NULL
 	   shall be returned and errno shall be set. */
+	free_pin();
 	pin = strdup(_pin);
 	if (pin != NULL)
 		pin_length = strlen(pin);
@@ -127,6 +128,7 @@ static int get_pin(UI_METHOD * ui_method, void *callback_data)
 
 	/* pin in the call back data, copy and use */
 	if (mycb != NULL && mycb->password) {
+		free_pin();
 		pin = (char *)calloc(MAX_PIN_LENGTH, sizeof(char));
 		if (!pin)
 			return 0;
@@ -142,6 +144,11 @@ static int get_pin(UI_METHOD * ui_method, void *callback_data)
 	if (callback_data != NULL)
 		UI_set_app_data(ui, callback_data);
 
+	free_pin();
+	pin = (char *)calloc(MAX_PIN_LENGTH, sizeof(char));
+	if (!pin)
+		return 0;
+	pin_length = MAX_PIN_LENGTH;
 	if (!UI_add_input_string
 	    (ui, "PKCS#11 token PIN: ", 0, pin, 1, MAX_PIN_LENGTH)) {
 		fprintf(stderr, "UI_add_input_string failed\n");
