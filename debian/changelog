@@ -1,3 +1,11 @@
+engine-pkcs11 (1:0.1.8-4) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * Add pull request from https://github.com/tkil/engine_pkcs11
+  * Fixes memory leaks.
+
+ -- Michael Gebetsroither <michael@mgeb.org>  Sun, 15 Sep 2013 12:17:20 +0200
+
 engine-pkcs11 (0.1.8-3) unstable; urgency=low
 
   * debian/control, debian/rules: Use autotools-dev.
