@@ -1,0 +1,101 @@
+engine-pkcs11 (0.1.8-3) unstable; urgency=low
+
+  * debian/control, debian/rules: Use autotools-dev.
+  * debian/compat, debian/control: Use debhelper v9.
+  * debian/control: Upgrade Standards-Version to 3.9.4.
+
+ -- Eric Dorland <eric@debian.org>  Wed, 11 Sep 2013 23:52:42 -0400
+
+engine-pkcs11 (0.1.8-2) unstable; urgency=low
+
+  * debian/rules: Actually install the engine in the correct
+    location.(Closes: #566971)
+
+ -- Eric Dorland <eric@debian.org>  Tue, 09 Feb 2010 02:33:41 -0500
+
+engine-pkcs11 (0.1.8-1) unstable; urgency=low
+
+  * New upstream release. (Closes: #564056)
+  * debian/libengine-pkcs11-openssl.links: Engine is now installed into
+    the correct location under /usr/lib/ssl/engines, add a symlink to the
+    old location for compatibility. (Closes: 506772)
+
+ -- Eric Dorland <eric@debian.org>  Sun, 10 Jan 2010 03:45:56 -0500
+
+engine-pkcs11 (0.1.7-1) unstable; urgency=low
+
+  * New upstream release.
+  * debian/source/format, debian/source/options,
+    debian/source/patch-header: Convert to v3 quilt format, with
+    single-debian-patch.
+  * debian/control: 
+    - Build depend on the correct version of debhelper.
+    - Add ${misc:Depends}.
+  * debian/rules, debian/libengine-pkcs11-openssl.doc-base: Install docs,
+    fix up paths and use the right doc-base section.
+
+ -- Eric Dorland <eric@debian.org>  Sun, 10 Jan 2010 03:18:54 -0500
+
+engine-pkcs11 (0.1.6-1) unstable; urgency=low
+
+  * New upstream release.
+  * debian/control:
+    - Now requires libp11 >= 0.2.5.
+    - Depend on debhelper > 7, remove cdbs.
+    - Standards-Version to 3.8.3.
+  * debian/rules: Switch to dh.
+  * debian/compat: Add, version 7.
+
+ -- Eric Dorland <eric@debian.org>  Sun, 23 Aug 2009 19:20:25 -0400
+
+engine-pkcs11 (0.1.5-1) unstable; urgency=low
+
+  * New upstream release.
+  * debian/rules: 
+    - Update for new ChangeLog location.
+    - Install docs in the right place with --htmldir.
+  * debian/libengine-pkcs11-openssl.docs: No need for this file anymore.
+  * debian/libengine-pkcs11-openssl.doc-base: Update for new location.
+
+ -- Eric Dorland <eric@debian.org>  Mon, 06 Apr 2009 03:23:28 -0400
+
+engine-pkcs11 (0.1.4-2) unstable; urgency=low
+
+  [ Cyril Brulebois ]
+  * src/engine_pkcs11.c: Backport revision 110 (upstream ticket #11) to fix
+    failure to ask a PIN, often rendering the smartcard locked: check for
+    mycb not being NULL before trying to dereference it, in 
+    src/engine_pkcs11.c's get_pin(). Thanks to Aron Griffis for both 
+    Debian and upstream bug reports. (Closes: #503298).
+
+ -- Eric Dorland <eric@debian.org>  Sun, 09 Nov 2008 01:21:09 -0500
+
+engine-pkcs11 (0.1.4-1) unstable; urgency=low
+
+  * New upstream release.
+  * debian/control: Up Standard-Version to 3.7.2.2.
+
+ -- Eric Dorland <eric@debian.org>  Sat, 21 Jul 2007 14:22:04 -0400
+
+engine-pkcs11 (0.1.3-2) unstable; urgency=low
+
+  * debian/control: Standards-Version to 3.7.2.1.
+  * debian/watch: Update to new location and switch to version 3.
+
+ -- Eric Dorland <eric@debian.org>  Sun, 23 Jul 2006 01:30:12 -0400
+
+engine-pkcs11 (0.1.3-1) unstable; urgency=low
+
+  * New upstream release.
+  * debian/control: 
+    - Build depend on the newer libp11-dev, since it's
+      necessary.
+    - We need libltdl3-dev.
+
+ -- Eric Dorland <eric@debian.org>  Fri,  9 Dec 2005 00:30:03 -0500
+
+engine-pkcs11 (0.1.2-1) unstable; urgency=low
+
+  * Initial release.
+
+ -- Eric Dorland <eric@debian.org>  Tue, 29 Nov 2005 01:47:32 -0500
