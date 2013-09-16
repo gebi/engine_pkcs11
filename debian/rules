@@ -6,9 +6,5 @@
 override_dh_auto_configure:
 	dh_auto_configure -- \
 		--htmldir=/usr/share/doc/libengine-pkcs11-openssl/html \
-		--enable-doc \
+		--disable-doc \
 		--with-enginesdir=/usr/lib/ssl/engines
-
-override_dh_installchangelogs:
-	dh_installchangelogs doc/nonpersistent/ChangeLog
-
