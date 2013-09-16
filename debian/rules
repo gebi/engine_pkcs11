@@ -1,0 +1,10 @@
+#!/usr/bin/make -f
+
+%:
+	dh $@ --with autotools_dev
+
+override_dh_auto_configure:
+	dh_auto_configure -- \
+		--htmldir=/usr/share/doc/libengine-pkcs11-openssl/html \
+		--disable-doc \
+		--with-enginesdir=/usr/lib/ssl/engines

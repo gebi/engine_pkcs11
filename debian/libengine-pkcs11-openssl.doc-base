@@ -1,0 +1,10 @@
+Document: engine-pkcs11
+Title: Engine_pkcs11 manual
+Author: Engine_pkcs11 authors
+Abstract: Using engine_pkcs11
+Section: System/Security
+
+Format: HTML
+Index: /usr/share/doc/libengine-pkcs11-openssl/html/wiki/index.html
+Files: /usr/share/doc/libengine-pkcs11-openssl/html/wiki/*.html
+
