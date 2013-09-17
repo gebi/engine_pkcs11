@@ -367,6 +367,8 @@ static int parse_slot_id_string(const char *slot_id, int *slot,
 				unsigned char *id, size_t *id_len,
 				char **label)
 {
+    fprintf(stderr, "parse_slot_id_string: slot_id=\"%s\" slot=%d id=\"%s\" id_len=%d label=\"%s\"\n",
+            slot_id, *slot, id, *id_len, *label);
 	size_t slot_id_len;
 	int n, i;
 
@@ -494,6 +496,8 @@ static int parse_slot_id_string_aux(const char *slot_id,
 				    char **label,
 				    const char *use)
 {
+    fprintf(stderr, "parse_slot_id_string_aux: slot_id=\"%s\" slot_nr=%d id=\"%s\" id_len=%d label=\"%s\" use=\"%s\"\n",
+            slot_id, *slot_nr, id, *id_len, *label, use);
 	int rc = 1;
 
 	/* Empty / blank slot+id specifier is allowed. */
@@ -620,6 +624,7 @@ static PKCS11_CERT *scan_certs(PKCS11_CERT *certs,
 			       char *id,
 			       unsigned int id_len)
 {
+    fprintf(stderr, "scan_certs: cert_count=%d id=\"%s\" id_len=%d\n", cert_count, id, id_len);
 	PKCS11_CERT *rv = NULL;
 	unsigned int n;
 	unsigned int cert_num = 0;
@@ -629,6 +634,7 @@ static PKCS11_CERT *scan_certs(PKCS11_CERT *certs,
 	for (n = 0; n < cert_count; n++) {
 		PKCS11_CERT *c = certs + n;
 
+        fprintf(stderr, "scan_certs: id_len=%d c->id_len=%d id=\"%s\" c->id=\"%s\"\n", id_len, c->id_len, id, c->id);
 		if (id_len && c->id_len == id_len &&
 		    memcmp(c->id, id, id_len) == 0) {
 			rv = c;
@@ -653,8 +659,10 @@ static PKCS11_CERT *scan_certs(PKCS11_CERT *certs,
 	}
 
 	/* If we couldn't find a match, just use the first one. */
-	if (!rv)
+	if (!rv) {
+        fprintf(stderr, "Did not find a matching certificate, using the first one\n");
 		rv = certs;
+    }
 
 	if (verbose) {
 		if (rv)
@@ -687,12 +695,16 @@ static X509 *pkcs11_load_cert(ENGINE *e, const char *slot_id)
 	char *cert_label = NULL;
 	int slot_nr = -1;
 
+    memset(cert_id, 0,  sizeof(cert_id));
+    fprintf(stderr, "pkcs11_load_cert: slot_id=\"%s\"\n", slot_id);
+
 #undef CLEANUP
 #define CLEANUP cleanup_done
 
 	if (!parse_slot_id_string_aux(slot_id, &slot_nr, cert_id, &cert_id_len,
 				      &cert_label, "certificate"))
 		return NULL;
+    fprintf(stderr, "pkcs11_load_cert: cert_label=\"%s\"\n", cert_label);
 
 	if (PKCS11_enumerate_slots(ctx, &slots, &slot_count) < 0)
 		FAIL("Failed to enumerate slots");
