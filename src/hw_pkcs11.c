@@ -126,7 +126,6 @@ static const ENGINE_CMD_DEFN pkcs11_cmd_defns[] = {
 /* Destructor */
 static int pkcs11_engine_destroy(ENGINE * e)
 {
-	ERR_unload_PKCS11_strings();
 	return 1;
 }
 
@@ -173,7 +172,6 @@ static int pkcs11_engine_rsa_finish(RSA * rsa)
  * "dynamic" ENGINE support too */
 static int bind_helper(ENGINE * e)
 {
-	ERR_load_PKCS11_strings();
 
 	/**
 	 * workaround a bug in OpenSSL
