@@ -1,3 +1,9 @@
+engine-pkcs11 (1:0.1.8-5) unstable; urgency=low
+
+  * Fix memoryleaks.
+
+ -- Michael Gebetsroither <michael@mgeb.org>  Sun, 22 Sep 2013 20:34:41 +0200
+
 engine-pkcs11 (1:0.1.8-4) unstable; urgency=low
 
   * Non-maintainer upload.
